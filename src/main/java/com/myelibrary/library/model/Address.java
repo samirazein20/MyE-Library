@@ -1,21 +1,34 @@
 package com.myelibrary.library.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long addressId;
+    @NotNull
     private String street;
+    @NotNull
     private String city;
+    @NotNull
     private String state;
+    @NotNull
     private String zip;
 
+    @OneToOne(mappedBy = "address")
+    private Person person;
+
     public Address() {
+    }
+
+    public Address(long addressId, String street, String city, String state, String zip) {
+        this.addressId = addressId;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
     }
 
     public long getAddressId() {
@@ -56,5 +69,13 @@ public class Address {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

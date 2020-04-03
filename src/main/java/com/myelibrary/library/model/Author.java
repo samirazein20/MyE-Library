@@ -1,6 +1,7 @@
 package com.myelibrary.library.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Author {
@@ -9,6 +10,11 @@ public class Author {
     private long authorId;
     private String bio;
 
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "personId")
+    private Person person;
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bookId")
     private Book book;

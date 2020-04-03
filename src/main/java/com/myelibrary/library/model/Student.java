@@ -1,9 +1,6 @@
 package com.myelibrary.library.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -11,31 +8,54 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long studentId;
     @NotNull
-    private String name;
+    private String studentNumber;
+    private String program;
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "personId")
+    private Person person;
 
     public Student() {
     }
 
-    public Student(long id, String name) {
-        this.id = id;
-        this.name = name;
+    public Student(long studentId, String studentNumber, String program, Person person) {
+        this.studentId = studentId;
+        this.studentNumber = studentNumber;
+        this.program = program;
+        this.person = person;
     }
 
-    public long getId() {
-        return id;
+    public long getStudentId() {
+        return studentId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
     }
 
-    public String getName() {
-        return name;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
+    public String getProgram() {
+        return program;
+    }
+
+    public void setProgram(String program) {
+        this.program = program;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
