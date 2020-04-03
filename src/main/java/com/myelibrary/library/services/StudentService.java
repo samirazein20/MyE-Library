@@ -6,5 +6,14 @@ import java.util.List;
 
 public interface StudentService {
     Student saveStudent(Student student);
+
+    List<Student> findAllById(Iterable<Long> studentId);
+
     List<Student> findAll();
+
+    void deleteInBatch(Iterable<Long> studentId);
+
+    void deleteAllInBatch();
+
+    Student getOneStudent(Long studentId);
 }

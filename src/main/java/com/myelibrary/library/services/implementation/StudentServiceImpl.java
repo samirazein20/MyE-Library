@@ -20,7 +20,27 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> findAllById(Iterable<Long> studentId) {
+        return studentRepository.findAllById(studentId);
+    }
+
+    @Override
     public List<Student> findAll() {
         return studentRepository.findAll();
+    }
+
+    @Override
+    public void deleteInBatch(Iterable<Long> studentId) {
+
+    }
+
+    @Override
+    public void deleteAllInBatch() {
+
+    }
+
+    @Override
+    public Student getOneStudent(Long studentId) {
+        return studentRepository.getOne(studentId);
     }
 }
